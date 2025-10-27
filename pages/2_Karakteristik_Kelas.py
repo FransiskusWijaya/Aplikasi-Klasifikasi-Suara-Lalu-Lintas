@@ -21,7 +21,6 @@ tab_macet, tab_lancar, tab_sepi = st.tabs(["🛑 Macet", "⚠️ Lancar", "✅ S
 with tab_macet:
     st.header("Karakteristik Kelas: Macet")
 
-    # Deskripsi dari file About.py
     st.write(
         """
         **Definisi Operasional:** Arus lalu lintas sangat padat, kecepatan rata-rata mendekati 0 km/jam, dengan jumlah kendaraan melintas sekitar **~15 kendaraan/menit**.
@@ -32,24 +31,17 @@ with tab_macet:
         - Frekuensi **suara klakson yang panjang dan repetitif** sangat tinggi, menandakan frustrasi.
         """
     )
-    
     st.divider()
 
-    # Layout kolom untuk media
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.subheader("Contoh Visual")
-        # Ganti dengan path file gambar Anda
+    # KONTENER 1: CONTOH MEDIA
+    with st.container(border=True):
+        st.subheader("Contoh Media")
         st.image("assets/images/macet.jpg", caption="Contoh visual kondisi lalu lintas macet.")
-        
-        st.subheader("Contoh Audio-Visual")
-        # Ganti dengan path file video Anda
         st.video("assets/videos/macet.mp4")
 
-    with col2:
+    # KONTENER 2: ANALISIS SPEKTROGRAM
+    with st.container(border=True):
         st.subheader("Representasi Spektogram")
-        # Ganti dengan path file spektogram Anda
         st.image("assets/spectrograms/macet_spec.png", caption="Spektogram suara macet.")
         st.info(
             """
@@ -73,19 +65,16 @@ with tab_lancar:
         - Suara klakson hampir tidak ada karena arus lalu lintas bergerak tanpa hambatan.
         """
     )
-
     st.divider()
 
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.subheader("Contoh Visual")
+    # KONTENER 1: CONTOH MEDIA
+    with st.container(border=True):
+        st.subheader("Contoh Media")
         st.image("assets/images/lancar.jpg", caption="Contoh visual kondisi lalu lintas lancar.")
-        
-        st.subheader("Contoh Audio-Visual")
         st.video("assets/videos/lancar.mp4")
 
-    with col2:
+    # KONTENER 2: ANALISIS SPEKTROGRAM
+    with st.container(border=True):
         st.subheader("Representasi Spektogram")
         st.image("assets/spectrograms/lancar_spec.png", caption="Spektogram suara lancar.")
         st.info(
@@ -110,19 +99,16 @@ with tab_sepi:
         - Suara dominan adalah kendaraan yang melintas cepat dan menghilang (efek Doppler).
         """
     )
-
     st.divider()
 
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.subheader("Contoh Visual")
+    # KONTENER 1: CONTOH MEDIA
+    with st.container(border=True):
+        st.subheader("Contoh Media")
         st.image("assets/images/sepi.jpg", caption="Contoh visual kondisi lalu lintas sepi.")
-
-        st.subheader("Contoh Audio-Visual")
         st.video("assets/videos/sepi.mp4")
 
-    with col2:
+    # KONTENER 2: ANALISIS SPEKTROGRAM
+    with st.container(border=True):
         st.subheader("Representasi Spektogram")
         st.image("assets/spectrograms/sepi_spec.png", caption="Spektogram suara sepi.")
         st.info(

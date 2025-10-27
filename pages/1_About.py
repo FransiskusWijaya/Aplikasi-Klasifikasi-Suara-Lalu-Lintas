@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Konfigurasi Halaman
-st.set_page_config(page_title="Tentang Proyek", page_icon="📝")
+st.set_page_config(page_title="Tentang Proyek", page_icon="📝", layout="wide")
 
 st.title("📝 Tentang Proyek Penelitian")
 
@@ -15,53 +15,58 @@ st.info(
 st.markdown("---")
 
 # =================================================================
-# --- BAGIAN ARSITEKTUR MODEL (DIPERBARUI) ---
+# --- BAGIAN ARSITEKTUR MODEL (DENGAN PERBAIKAN ALIGNMENT) ---
 st.subheader("Arsitektur Model: CRNN Hibrida")
 st.write(
     """
     Model yang digunakan adalah **Convolutional Recurrent Neural Network (CRNN)**, 
-    sebuah arsitektur hibrida yang secara cerdas menggabungkan kekuatan dua jenis jaringan untuk "mendengar" dan "memahami" suara dari waktu ke waktu.
+    sebuah arsitektur hibrida yang menggabungkan kekuatan dua jenis jaringan untuk "mendengar" dan "memahami" suara dari waktu ke waktu.
     """
 )
 
-# --- Penjelasan CNN dengan Kolom dan Gambar ---
-st.markdown("#### 1. Convolutional Neural Network (CNN): Sang Ekstraktor Fitur")
-col1, col2 = st.columns([1, 2])
+# KARTU 1: PENJELASAN CNN (UKURAN & POSISI DIPERBAIKI)
+with st.container(border=True):
+    st.markdown("#### 1. Convolutional Neural Network (CNN): Sang Ekstraktor Fitur")
+    col1, col2 = st.columns([1, 2])
 
-with col1:
-    # Ganti dengan path gambar arsitektur CNN Anda
-    st.image("assets/images/cnn_architecture.png", caption="Contoh Arsitektur CNN")
+    with col1:
+        # --- PERUBAHAN DI SINI ---
+        # 1. Menambahkan spasi vertikal untuk mendorong gambar ke bawah
+        st.markdown("<br>", unsafe_allow_html=True)
 
-with col2:
-    st.write(
-        """
-        Bayangkan CNN sebagai "telinga" model yang sangat tajam. Tugasnya bukan untuk mendengar suara secara keseluruhan, melainkan untuk **mengenali pola-pola atau fitur unik** di dalam representasi visual suara (Mel-spektrogram).
+        # 2. Menghapus sub-kolom agar gambar tidak mengecil
+        st.image("assets/images/cnn_architecture.png", caption="Contoh Arsitektur CNN")
 
-        - **Apa yang 'didengar'?** CNN belajar mengidentifikasi tekstur suara seperti deru mesin yang konstan, letupan klakson yang tajam, atau gesekan ban yang spesifik.
-        - **Bagaimana caranya?** Ia menggunakan "filter" digital untuk memindai gambar spektogram dan mengekstrak fitur-fitur kunci ini, sama seperti mata kita mengenali bentuk dalam sebuah gambar.
-        """
-    )
+    with col2:
+        st.write(
+            """
+            Bayangkan CNN sebagai "telinga" model yang sangat tajam. Tugasnya bukan untuk mendengar suara secara keseluruhan, melainkan untuk **mengenali pola-pola atau fitur unik** di dalam representasi visual suara (Mel-spektrogram).
 
+            - **Apa yang 'didengar'?** CNN belajar mengidentifikasi tekstur suara seperti deru mesin yang konstan, letupan klakson yang tajam, atau gesekan ban yang spesifik.
+            - **Bagaimana caranya?** Ia menggunakan "filter" digital untuk memindai gambar spektogram dan mengekstrak fitur-fitur kunci ini, sama seperti mata kita mengenali bentuk dalam sebuah gambar.
+            """
+        )
 
-# --- Penjelasan LSTM dengan Kolom dan Gambar ---
-st.markdown("#### 2. Long Short-Term Memory (LSTM): Sang Penganalisis Urutan")
-col1, col2 = st.columns([2, 1])
+# KARTU 2: PENJELASAN LSTM (TETAP SAMA, SUDAH BENAR)
+with st.container(border=True):
+    st.markdown("#### 2. Long Short-Term Memory (LSTM): Sang Penganalisis Urutan")
+    col1, col2 = st.columns([2, 1])
 
-with col1:
-    st.write(
-        """
-        Setelah CNN mengekstrak "apa" saja suara yang ada, LSTM bertugas untuk memahami "bagaimana" suara-suara tersebut berhubungan seiring waktu. LSTM adalah "otak" dari model yang memiliki memori.
+    with col1:
+        st.write(
+            """
+            Setelah CNN mengekstrak "apa" saja suara yang ada, LSTM bertugas untuk memahami "bagaimana" suara-suara tersebut berhubungan seiring waktu. LSTM adalah "otak" dari model yang memiliki memori.
 
-        - **Apa yang dianalisis?** LSTM menganalisis urutan fitur yang diberikan oleh CNN. Misalnya, ia belajar bahwa suara mesin idle yang diikuti oleh raungan pendek dan kemudian hening lagi adalah pola khas dari kondisi **Macet (stop-and-go)**.
-        - **Bagaimana caranya?** LSTM memiliki "sel memori" yang memungkinkannya mengingat pola dari beberapa detik sebelumnya untuk memahami konteks suara saat ini.
-        """
-    )
-with col2:
-    # Ganti dengan path gambar arsitektur LSTM Anda
-    st.image("assets/images/lstm_architecture.png", caption="Contoh Sel Memori LSTM")
+            - **Apa yang dianalisis?** LSTM menganalisis urutan fitur yang diberikan oleh CNN. Misalnya, ia belajar bahwa suara mesin idle yang diikuti oleh raungan pendek dan kemudian hening lagi adalah pola khas dari kondisi **Macet (stop-and-go)**.
+            - **Bagaimana caranya?** LSTM memiliki "sel memori" yang memungkinkannya mengingat pola dari beberapa detik sebelumnya untuk memahami konteks suara saat ini.
+            """
+        )
+    with col2:
+        sub_col1, sub_col2 = st.columns([1, 5])
+        with sub_col2:
+            st.image("assets/images/lstm_architecture.png", caption="Contoh Sel Memori LSTM")
 
 st.markdown("---")
-
 
 # =================================================================
 # --- BAGIAN DATASET (TETAP SAMA) ---
@@ -80,33 +85,27 @@ st.success(
 )
 st.markdown("---")
 
-
 # =================================================================
-# --- BAGIAN BARU: TENTANG PENULIS ---
+# --- BAGIAN TENTANG PENULIS (TETAP SAMA) ---
 st.subheader("Tentang Penulis 👨‍💻")
 
-col1, col2 = st.columns([1, 3])
+with st.container(border=True):
+    col1, col2 = st.columns([1, 3])
 
-with col1:
-    # Opsional: Tambahkan foto Anda untuk sentuhan yang lebih personal
-    # st.image("assets/images/foto_profil.jpg", caption="Fransiskus Dharma Hadi Wijaya")
-    pass
+    with col1:
+        st.write("") 
 
-with col2:
-    st.markdown(
-        """
-        **Fransiskus Dharma Hadi Wijaya**
-        
-        *Mahasiswa Teknik Informatika, Universitas Tarumanagara (535220106)*
-        
-        ---
-        
-        #### Mengapa Topik Ini?
-        
-        **(Silakan ganti paragraf ini dengan cerita Anda sendiri)**
-        
-        "Berawal dari pengamatan sehari-hari terjebak dalam kemacetan Jakarta, saya sering bertanya-tanya: bisakah kita memahami kondisi lalu lintas tanpa harus melihatnya secara langsung? Suara klakson yang bersahutan, deru mesin yang tak bergerak, dan keheningan jalanan di malam hari memiliki pola yang khas. 
-        
-        Hal ini memicu ketertarikan saya untuk menjembatani dunia **analisis audio** dengan **kecerdasan buatan**. Saya ingin membuktikan bahwa suara, data yang seringkali kita abaikan, sebenarnya menyimpan informasi yang kaya dan dapat dimanfaatkan untuk analisis perkotaan. Proyek ini adalah langkah awal saya untuk mengeksplorasi potensi tersebut."
-        """
-    )
+    with col2:
+        st.markdown(
+            """
+            **Fransiskus Dharma Hadi Wijaya**
+            
+            *Mahasiswa Teknik Informatika, Universitas Tarumanagara (535220106)*
+            
+            ---
+            
+            "Berawal dari pengamatan sehari-hari terjebak dalam kemacetan Jakarta, saya sering bertanya-tanya: bisakah kita memahami kondisi lalu lintas tanpa harus melihatnya secara langsung? Suara klakson yang bersahutan, deru mesin yang tak bergerak, dan keheningan jalanan di malam hari memiliki pola yang khas. 
+            
+            Hal ini memicu ketertarikan saya untuk menjembatani dunia **analisis audio** dengan **kecerdasan buatan**. Proyek ini adalah langkah awal saya untuk mengeksplorasi potensi tersebut."
+            """
+        )
