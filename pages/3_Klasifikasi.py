@@ -81,7 +81,7 @@ confidence_threshold = st.sidebar.slider(
 st.sidebar.info(f"Ambang batas saat ini: **{confidence_threshold}%**")
 
 # --- KONTEN HALAMAN UTAMA ---
-st.title("🚦 Analisis Kondisi Lalu Lintas via Suara")
+st.title("Analisis Kondisi Lalu Lintas via Suara 🚦")
 st.write("Unggah rekaman suara kondisi lalu lintas untuk dianalisis oleh model CRNN.")
 
 model, le = load_model_and_encoder()
