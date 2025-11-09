@@ -1,21 +1,5 @@
 import streamlit as st
-import pandas as pd
-import base64 # Library baru untuk mengubah gambar menjadi teks
 
-# =================================================================
-# --- FUNGSI BARU UNTUK MENGUBAH GAMBAR MENJADI BASE64 ---
-# =================================================================
-def get_image_as_base64(file_path):
-    """Fungsi untuk membaca file gambar dan mengonversinya ke Base64."""
-    with open(file_path, "rb") as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
-
-# =================================================================
-# --- KODE UTAMA APLIKASI ---
-# =================================================================
-
-# Konfigurasi Halaman
 st.set_page_config(page_title="Tentang Proyek", page_icon="📝", layout="wide")
 
 st.title("📝 Tentang Proyek Penelitian")
@@ -28,7 +12,6 @@ st.info(
 
 st.markdown("---")
 
-# --- BAGIAN BARU: ALUR KERJA PENGOLAHAN DATA ---
 st.subheader("Alur Kerja Pengolahan Data")
 st.write(
     """
@@ -36,7 +19,6 @@ st.write(
     """
 )
 
-# Menggunakan kolom untuk memisahkan setiap langkah
 col1, col2 = st.columns(2, gap="large")
 
 with col1:
@@ -60,7 +42,6 @@ with col2:
 st.markdown("---")
 
 
-# --- BAGIAN ARSITEKTUR MODEL ---
 st.subheader("Arsitektur Model: CRNN Hibrida")
 st.write(
     """
@@ -69,19 +50,15 @@ st.write(
     """
 )
 
-# KARTU 1: PENJELASAN CNN (VERSI BARU YANG LEBIH FORMAL)
 with st.container(border=True):
     st.markdown("#### Convolutional Neural Network (CNN): Ekstraksi Fitur Spasial")
     
-    # Mengatur layout dengan gambar di kiri dan teks di kanan
     col1, col2 = st.columns([1, 2], vertical_alignment="center") 
     
     with col1:
-        # Menambahkan gambar arsitektur CNN
         st.image("assets/images/cnn_architecture.png", caption="Contoh Arsitektur CNN")
         
     with col2:
-        # Mengganti teks lama dengan penjelasan yang baru
         st.write(
             """
             Blok *Convolutional Neural Network* (CNN) bertugas sebagai ekstraktor fitur visual. Fungsi utamanya adalah untuk menganalisis gambar Mel-spectrogram dan secara otomatis mengidentifikasi pola-pola spasial yang menjadi karakteristik pembeda untuk setiap kondisi lalu lintas.
@@ -94,11 +71,9 @@ with st.container(border=True):
             """
         )
 
-# KARTU 2: PENJELASAN LSTM (DENGAN TEKS BARU YANG LEBIH FORMAL)
 with st.container(border=True):
     st.markdown("#### Long Short-Term Memory (LSTM): Analisis Dependensi Temporal")
     
-    # Mengatur layout dengan teks di kiri dan gambar di kanan
     col1, col2 = st.columns([4, 1], vertical_alignment="center")
 
     with col1:
@@ -113,12 +88,10 @@ with st.container(border=True):
         )
         
     with col2:
-        # Tampilkan gambar di dalam kolom kanan
         st.image("assets/images/lstm_architecture.png", caption="Contoh Sel Memori LSTM")
 
 st.markdown("---")
 
-# --- BAGIAN DATASET (TETAP SAMA) ---
 st.subheader("Dataset Pribadi")
 st.write(
     """
@@ -133,20 +106,14 @@ st.success(
 )
 st.markdown("---")
 
-# --- BAGIAN TENTANG PENULIS (DENGAN FOTO LEBIH BESAR DAN DI TENGAH) ---
 st.subheader("Tentang Penulis 👨‍💻")
 with st.container(border=True):
-    # Mengatur layout utama dengan kolom untuk foto dan teks
     col1, col2 = st.columns([1, 3], vertical_alignment="center")
     
     with col1:
-        # --- PERUBAHAN 2: MEMBUAT GAMBAR KE TENGAH ---
-        # Kita buat 3 kolom lagi di dalam col1, dan taruh gambar di kolom tengah (sub_col2)
         sub_col1, sub_col2, sub_col3 = st.columns([1, 2, 1])
         
         with sub_col2:
-            # --- PERUBAHAN 1: MEMPERBESAR GAMBAR ---
-            # Ganti nilai width dari 150 menjadi 200 (atau angka lain sesuai selera Anda)
             st.image("assets/images/Profile.jpeg", width=1000) 
         
     with col2:
@@ -162,3 +129,39 @@ with st.container(border=True):
             Hal ini memicu ketertarikan saya untuk menjembatani dunia **analisis audio** dengan **kecerdasan buatan**. Proyek ini adalah langkah awal saya untuk mengeksplorasi potensi tersebut."
             """
         )
+
+st.markdown("##### Dosen Pembimbing")
+
+col1, col2 = st.columns(2, gap="large")
+
+with col1:
+    with st.container(border=True):
+        img_col, text_col = st.columns([1, 3], vertical_alignment="center")
+        
+        with img_col:
+            st.image("assets/images/Dospem1.jpg", width=150) 
+            
+        with text_col:
+            st.markdown(
+                """
+                **Agus Budi Dharmawan, S.Kom, M.T,. M.Sc.**
+                
+                *Dosen Pembimbing Utama*
+                """
+            )
+
+with col2:
+    with st.container(border=True):
+        img_col, text_col = st.columns([1, 3], vertical_alignment="center")
+        
+        with img_col:
+            st.image("assets/images/Dospem2.jpg", width=150)
+            
+        with text_col:
+            st.markdown(
+                """
+                **Manatap Dolok Lauro, S.Kom., M.M.S.I.**
+                
+                *Dosen Pembimbing Pendamping*
+                """
+            )

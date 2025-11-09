@@ -1,16 +1,13 @@
 import streamlit as st
 
-# Konfigurasi halaman
 st.set_page_config(
     page_title="Home - Analisis Suara Lalu Lintas",
     page_icon="🚦",
     layout="wide"
 )
 
-# --- INJEKSI CSS KUSTOM UNTUK MEWARNAI TABS ---
 st.markdown("""
 <style>
-    /* Mengatur gaya dasar untuk semua tab */
     button[data-baseweb="tab"] {
         font-size: 1.1em;
         font-weight: bold;
@@ -20,10 +17,8 @@ st.markdown("""
         padding: 10px 15px;
         flex-grow: 1;
         justify-content: center;
-        color: white !important; /* Membuat teks selalu putih agar kontras */
+        color: white !important;
     }
-
-    /* --- MEWARNAI TAB BERDASARKAN URUTANNYA --- */
 
     /* Tab 1: Macet (Merah) */
     button[data-baseweb="tab"]:nth-of-type(1) {
@@ -54,7 +49,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# --- BAGIAN HEADER ---
 col1, col2 = st.columns([2, 1], vertical_alignment="center")
 
 with col1:
@@ -69,20 +63,16 @@ with col1:
     )
 
 with col2:
-    # Ganti dengan path ke gambar header Anda
     st.image("assets/images/soundwave_logo.png", width=250)
 
 st.divider()
 
-# --- FITUR DEMO AUDIO INTERAKTIF ---
 st.subheader("Dengarkan Perbedaannya 🎧")
 
-# Buat tab untuk setiap kelas (tanpa ikon)
 tab_macet, tab_lancar, tab_sepi = st.tabs(["Macet", "Lancar", "Sepi"])
 
 with tab_macet:
     st.write("**Karakteristik:** Suara mesin idle, klakson, dan pola audio *stop-and-go*.")
-    # Sediakan file audio contoh di folder assets Anda
     st.audio("assets/samples/Macet.wav")
 
 with tab_lancar:
@@ -95,7 +85,6 @@ with tab_sepi:
 
 st.divider()
 
-# --- KARTU NAVIGASI ---
 st.subheader("Mulai Eksplorasi 🚀")
 
 col1, col2, col3 = st.columns(3, gap="large")
@@ -118,7 +107,6 @@ with col3:
         st.write("Unggah file audio lalu lintas Anda dan biarkan model kami menganalisisnya secara *real-time*.")
         st.page_link("pages/3_Klasifikasi.py", label="Mulai Analisis", icon="➡️")
 
-# --- INFORMASI DI SIDEBAR ---
 st.sidebar.success(
     """
     **Oleh:**\n
