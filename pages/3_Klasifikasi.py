@@ -94,7 +94,7 @@ if model is not None and le is not None:
                                 predicted_class_name = le.inverse_transform([top_index])[0]
                                 st.success(f"**Prediksi Kondisi:** {predicted_class_name.title()} ({confidence_score:.2f}%)")
                                 
-                                st.subheader("Distribusi Kepercayaan Prediksi")
+                                st.subheader("Detail Prediksi")
                                 prob_df = pd.DataFrame({'Kelas Kondisi': le.classes_, 'Probabilitas': prediksi[0] * 100})
                                 st.bar_chart(prob_df.set_index('Kelas Kondisi'))
                                 
